@@ -11,11 +11,11 @@ variable "instance_type" {
 }
 
 variable "security_group" {
-  default = ["sg-09ce11f213f8c6b3c"]
+  default = ["sg-02919053736cfa206"]
 }
 
 variable "subnet_id" {
-  default = "subnet-4a8eb730"
+  default = "subnet-eb74a180"
 }
 
 #resource "aws_key_pair" "amazon" {
