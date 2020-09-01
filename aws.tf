@@ -1,10 +1,10 @@
 provider "aws" {
-  region = "us-east-2"
+  region = "${var.region}"
 }
 
 resource "aws_instance" "build_instance" {
   ami = "${var.image_id}"
-  instance_type = "t2.micro"
+  instance_type = "${var.instance_type}"
 #  key_name = "${aws_key_pair.amazon.key_name}"
   key_name        = "${var.key_name}"
   vpc_security_group_ids = "${var.security_group}"
