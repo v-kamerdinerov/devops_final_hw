@@ -26,7 +26,3 @@ variable "subnet_id" {
 variable "key_name" {
   default = "amazon"
 }
-
-variable "subnet_id" {
-  default = "subnet-4a8eb730"
-}
