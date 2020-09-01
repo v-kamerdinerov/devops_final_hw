@@ -3,14 +3,19 @@
 - name: Install packages for build app
   apt: name={{ item }} state=present
   with_items:
-    - git
-    - maven
+    - docker.io
 
-- name: Clone git repo
-  git:
-    repo: "https://github.com/boxfuse/boxfuse-sample-java-war-hello.git"
-    dest: "/work"
-    version: master
+- name: Log into DockerHub
+  docker_login:
+    username: $DOCKER_USER
+    password: $DOCKER_PASS
 
-- name: Build java app
-  command: mvn -f /work/pom.xml clean package
+- name: build and push docker image
+      docker_image:
+        source: build
+        build:
+          path: /usr/src/app/Dockerfile
+        name: anakin174/boxfuse-exam
+        tag: latest
+        target: prod
+        push: yes

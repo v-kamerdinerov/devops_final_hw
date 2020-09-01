@@ -1,0 +1,14 @@
+---
+- name: Install prod software
+  hosts: prod
+  become: yes
+  tasks:
+    - name: Ensure prod apps is present
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - docker.io
+        - maven
+    - name: Run docker image
+      comand: docker rum -d -p 8080:8080 amalin174/boxfuse-exam:latest
