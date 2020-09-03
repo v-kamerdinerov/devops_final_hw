@@ -13,10 +13,10 @@ resource "aws_instance" "build_instance" {
     Name = "build"
   }
   provisioner "local-exec" {
-    command = "sleep 180; sed -i \"/build/a ${aws_instance.build_instance.public_ip}\" hosts"
+    command = "sleep 60; sed -i \"/build/a ${aws_instance.build_instance.public_ip}\" hosts"
   }
 }
-#try 120-200 sec
+#try 120-200 or less
 
 
 resource "aws_instance" "prod_instance" {
@@ -30,7 +30,7 @@ resource "aws_instance" "prod_instance" {
     Name = "prod"
   }
   provisioner "local-exec" {
-    command = "sleep 180; sed -i \"/prod/a ${aws_instance.prod_instance.public_ip}\" hosts"
+    command = "sleep 60; sed -i \"/prod/a ${aws_instance.prod_instance.public_ip}\" hosts"
   }
 }
 
