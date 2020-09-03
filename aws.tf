@@ -31,5 +31,5 @@ resource "aws_instance" "prod_instance" {
 }
 
 provisioner "local-exec" {
-    command = "sleep 180; sed -i \"/build/a ${aws_instance.prod_instance.public_ip}\" hosts"
+    command = "sleep 180; sed -i \"/prod/a ${aws_instance.prod_instance.public_ip}\" hosts"
   }
