@@ -29,10 +29,9 @@
 
     - name: Build and push docker image
       docker_image:
-        source: build
         build:
-          path: /work/Dockerfile
+          path: /work
         name: anakin174/boxfuse-exam
         tag: latest
-        target: prod
         push: yes
+        source: build
