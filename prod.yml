@@ -1,8 +1,7 @@
 ---
 - name: Prod stage
   hosts: prod
-  become: 'yes'
-  become_user: ubuntu
+  become: yes
   tasks:
     - name: Ensure prod apps is present
       apt:
