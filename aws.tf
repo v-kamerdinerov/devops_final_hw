@@ -14,6 +14,9 @@ resource "aws_instance" "build_instance" {
   }
 }
 
+provisioner "local-exec" {
+    command = "sleep 120; sed -i \"/build/a ${aws_instance.build_instance.public_ip}\" hosts"
+  }
 
 resource "aws_instance" "prod_instance" {
   ami = "${var.image_id}"
@@ -26,3 +29,7 @@ resource "aws_instance" "prod_instance" {
     Name = "prod"
   }
 }
+
+provisioner "local-exec" {
+    command = "sleep 80; sed -i \"/build/a ${aws_instance.prod_instance.public_ip}\" hosts"
+  }
