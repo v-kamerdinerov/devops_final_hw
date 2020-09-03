@@ -12,11 +12,12 @@ resource "aws_instance" "build_instance" {
    tags = {
     Name = "build"
   }
-}
-#try 120-200 sec
-provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "sleep 180; sed -i \"/build/a ${aws_instance.build_instance.public_ip}\" hosts"
   }
+}
+#try 120-200 sec
+
 
 resource "aws_instance" "prod_instance" {
   ami = "${var.image_id}"
@@ -28,8 +29,8 @@ resource "aws_instance" "prod_instance" {
   tags = {
     Name = "prod"
   }
-}
-
-provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "sleep 180; sed -i \"/prod/a ${aws_instance.prod_instance.public_ip}\" hosts"
   }
+}
+
