@@ -1,7 +1,9 @@
 ---
 - name: Build stage
   hosts: build
+  remote_user: ubuntu
   become: yes
+  become_user: root
   tasks:
     - name: Install packages for build app
       apt: name={{ item }} update_cache=yes state=present

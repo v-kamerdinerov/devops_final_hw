@@ -1,7 +1,9 @@
 ---
 - name: Prod stage
   hosts: prod
+  remote_user: ubuntu
   become: yes
+  become_user: root
   tasks:
     - name: Ensure prod apps is present
       apt:
