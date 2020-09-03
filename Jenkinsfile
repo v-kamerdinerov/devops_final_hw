@@ -17,13 +17,14 @@ pipeline {
             }
             }
         }
-        stage ('Ansible delpoy')
+        stage ('Ansible delpoy') {
             steps {
-            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')])
+            {
             ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, inventory: 'hosts', playbook: 'build.yml'
             ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, inventory: 'hosts', playbook: 'prod.yml'
             }
             }
         }
         }
-
+}
