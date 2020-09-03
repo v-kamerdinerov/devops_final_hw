@@ -3,17 +3,30 @@
   apt: name={{ item }} state=present
   with_items:
     - docker.io
+    - maven
+    - git
 
 - name: Log into DockerHub
   docker_login:
     username: $DOCKER_USER
     password: $DOCKER_PASS
 
+- name: Clone git repo
+  git:
+    repo: "https://github.com/v-kamerdinerov/boxfuse.git"
+    dest: "/work"
+    version: master
+
+- name: Build java app
+  command: mvn clean package
+  args:
+    chdir: "/work"
+
 - name: build and push docker image
       docker_image:
         source: build
         build:
-          path: /usr/src/app/Dockerfile
+          path: /work/Dockerfile
         name: anakin174/boxfuse-exam
         tag: latest
         target: prod
