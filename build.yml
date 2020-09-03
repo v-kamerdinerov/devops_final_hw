@@ -22,7 +22,7 @@
   args:
     chdir: "/work"
 
-- name: build and push docker image
+- name: Build and push docker image
       docker_image:
         source: build
         build:
