@@ -14,7 +14,7 @@
         - maven
 
     - name: Login on dockerhub
-        command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+      command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 
     - name: Clone git repo
       git:

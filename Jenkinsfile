@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage ('Terraform planning') {
+        stage ('Terraform deploy AWS instances') {
             steps {
                 withAWS(credentials: 'awscli', region: 'us-east-2') {
                 sh 'terraform init'
@@ -17,7 +17,7 @@ pipeline {
             }
             }
         }
-        stage ('Ansible delpoy') {
+        stage ('Ansible deploy build and prod stage') {
             steps {
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')])
             {
