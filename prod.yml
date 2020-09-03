@@ -14,4 +14,4 @@
         - maven
 
     - name: Run docker image
-        comand: docker run -d -p 8080:8080 amalin174/boxfuse-exam:latest
+        command: docker run -d -p 8080:8080 amalin174/boxfuse-exam:latest
