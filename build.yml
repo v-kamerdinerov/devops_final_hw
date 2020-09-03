@@ -1,28 +1,34 @@
 ---
-- name: Install packages for build app
-  apt: name={{ item }} state=present
-  with_items:
-    - docker.io
-    - maven
-    - git
+- name: Build stage
+  hosts: build
+  become: 'yes'
+  become_user: ubuntu
+  tasks:
+    - name: Install packages for build app
+      apt: name={{ item }} update_cache=yes state=present
+      with_items:
+        - docker.io
+        - default-jdk
+        - git
+        - maven
 
-- name: Log into DockerHub
-  docker_login:
-    username: $DOCKER_USER
-    password: $DOCKER_PASS
+    - name: Log into DockerHub
+      docker_login:
+        username: $DOCKER_USER
+        password: $DOCKER_PASS
 
-- name: Clone git repo
-  git:
-    repo: "https://github.com/v-kamerdinerov/boxfuse.git"
-    dest: "/work"
-    version: master
+    - name: Clone git repo
+      git:
+        repo: "https://github.com/v-kamerdinerov/boxfuse.git"
+        dest: "/work"
+        version: master
 
-- name: Build java app
-  command: mvn clean package
-  args:
-    chdir: "/work"
+    - name: Build java app
+      command: mvn clean package
+      args:
+        chdir: "/work"
 
-- name: Build and push docker image
+    - name: Build and push docker image
       docker_image:
         source: build
         build:
