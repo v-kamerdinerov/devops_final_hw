@@ -21,8 +21,8 @@ pipeline {
             steps {
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')])
             {
-            ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'build.yml'
-            ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'prod.yml'
+            ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, extras: '-vvv', installation: 'ansible', inventory: 'hosts', playbook: 'build.yml'
+            ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'amazon', disableHostKeyChecking: true, extras: '-vvv', installation: 'ansible', inventory: 'hosts', playbook: 'prod.yml'
             }
             }
         }
