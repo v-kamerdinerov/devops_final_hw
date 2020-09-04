@@ -37,7 +37,7 @@
     - name: Build and push docker image
       docker_image:
         build:
-          path: /work
+          path: /work/Dockerfile
         name: anakin174/boxfuse-exam
         push: yes
         tag: latest
