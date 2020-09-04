@@ -12,7 +12,6 @@
         - git
         - maven
         - docker.io
-        - python
 
 #    - name: Ensure docker is presented
 #      pip:
