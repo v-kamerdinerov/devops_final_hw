@@ -13,11 +13,11 @@
         - maven
         - docker.io
 
-#    - name: Ensure docker is presented
-#      pip:
-#        name: docker
-#        state: present
-#        executable: pip3
+    - name: Ensure docker is presented
+      pip:
+        name: docker
+        state: present
+        executable: pip3
 
 
     - name: Login on dockerhub
