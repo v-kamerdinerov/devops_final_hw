@@ -19,6 +19,8 @@
         state: present
         executable: pip3
 
+    - name: check ansible version
+      command: ansible --version
 
     - name: Login on dockerhub
       command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
