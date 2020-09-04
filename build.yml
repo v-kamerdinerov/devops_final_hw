@@ -5,11 +5,14 @@
   become: yes
   become_user: root
   tasks:
-    - name: Ensure packages is presented
-      apt:
-        name: [default-jdk, maven, docker.io, python3-pip]
-        state: present
-        update_cache: yes
+    - name: Install packages for build app
+      apt: name={{ item }} update_cache=yes state=present
+      with_items:
+        - default-jdk
+        - git
+        - maven
+        - docker.io
+        - python3-pip
 
     - name: Ensure docker is presented
       pip:
