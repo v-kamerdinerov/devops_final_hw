@@ -5,21 +5,15 @@
   become: yes
   become_user: root
   tasks:
-    - name: Ensure packages is presented
+    - name: Ensure is build software is present
       apt:
-        pkg:
-          - default-jdk
-          - maven
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - python
           - docker.io
-          - python3-pip
-        state: present
-        update_cache: yes
-
-    - name: Ensure docker is presented
-      pip:
-        name: docker
-        state: present
-        executable: pip3
+          - maven
 
     - name: Login on dockerhub
       command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
@@ -41,5 +35,5 @@
           path: /work
         name: anakin174/boxfuse-exam
         push: yes
+        tag: latest
         source: build
-
