@@ -17,13 +17,13 @@
       pip:
         name: docker
         state: present
-        executable: pip3
+        executable: pip
 
     - name: Ensure docker SDK is presented
       pip:
         name: docker-py
         state: present
-        executable: pip3
+        executable: pip
 
  #   - name: Install docker SDK
  #     command: pip3 install docker-py
