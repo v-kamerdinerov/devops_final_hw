@@ -25,9 +25,6 @@
         state: present
         executable: pip
 
- #   - name: Install docker SDK
- #     command: pip3 install docker-py
-
     - name: Login on dockerhub
       command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 
@@ -45,7 +42,7 @@
     - name: Build and push docker image
       docker_image:
         build:
-          path: /work/Dockerfile
+          path: /work
         name: anakin174/boxfuse-exam
         push: yes
         tag: latest
